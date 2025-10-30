@@ -1,0 +1,98 @@
+/* ================= README.md ================= */
+const README = `
+# My AI Tools
+
+A free AI tools website: Image-to-Video, Text-to-Video, Text-to-Speech. Supports Burmese and English.
+
+## Setup
+
+1. Rename .env.example to .env and fill in your Firebase/MongoDB keys
+2. Install dependencies
+   - Frontend: npm install
+   - Backend: npm install
+3. Run project
+   - Backend: node server.js
+   - Frontend: npm start
+`;
+
+/* ================= .env.example ================= */
+const ENV_EXAMPLE = `
+FIREBASE_API_KEY=your_firebase_api_key
+FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+MONGO_URI=your_mongodb_connection_string
+`;
+
+/* ================= server.js ================= */
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+require("dotenv").config();
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// API routes (simple placeholders)
+app.get("/api/image-video", (req, res) => {
+  res.json({ message: "Image to Video endpoint works!" });
+});
+app.get("/api/text-video", (req, res) => {
+  res.json({ message: "Text to Video endpoint works!" });
+});
+app.get("/api/text-speech", (req, res) => {
+  res.json({ message: "Text to Speech endpoint works!" });
+});
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+/* ================= App.jsx ================= */
+import React from "react";
+
+function App() {
+  return (
+    <div>
+      <h1>My AI Tools</h1>
+      <p>Image-to-Video, Text-to-Video, Text-to-Speech components go here</p>
+    </div>
+  );
+}
+
+export default App;
+
+/* ================= Components Examples ================= */
+/* ImageToVideo.jsx */
+export function ImageToVideo() {
+  return <div>Image-to-Video Component</div>;
+}
+
+/* TextToVideo.jsx */
+export function TextToVideo() {
+  return <div>Text-to-Video Component</div>;
+}
+
+/* TextToSpeech.jsx */
+export function TextToSpeech() {
+  return <div>Text-to-Speech Component</div>;
+}
+
+/* ================= Deployment-Guide.pdf Notes ================= */
+const DeploymentGuide = `
+1. Local Run:
+   - Backend: node server.js
+   - Frontend: npm start
+2. Deploy Backend:
+   - Render.com / Railway → connect GitHub repo → deploy
+3. Deploy Frontend:
+   - Vercel → connect GitHub repo → deploy
+4. Firebase Auth + MongoDB configuration
+5. iOS / PWA setup instructions
+`;
+
+
